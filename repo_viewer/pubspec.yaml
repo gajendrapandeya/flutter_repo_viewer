@@ -24,6 +24,7 @@ dependencies:
   flash: ^2.0.3+2
   auto_route: ^3.2.2
   freezed_annotation: ^1.1.0
+  material_design_icons_flutter: ^5.0.6595
 
 dev_dependencies:
   flutter_test:

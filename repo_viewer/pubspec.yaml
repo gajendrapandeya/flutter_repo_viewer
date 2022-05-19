@@ -1,8 +1,7 @@
 name: repo_viewer
 description: A new Flutter project.
 
-publish_to: 'none' 
-
+publish_to: "none"
 
 version: 1.0.0+1
 
@@ -23,49 +22,19 @@ dependencies:
   webview_flutter: ^3.0.0
   flash: ^2.0.3+2
   auto_route: ^3.2.2
+  json_annotation: ^4.5.0
   freezed_annotation: ^1.1.0
+  sembast: ^3.2.0
+  path_provider: ^2.0.10
+  path: ^1.8.2
   material_design_icons_flutter: ^5.0.6595
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  
   build_runner: ^2.1.7
   auto_route_generator: ^3.2.1
   freezed: ^1.1.1
+  json_serializable: ^6.2.0
   flutter_lints: ^1.0.0
 
 flutter:
-
   uses-material-design: true
-
-  
-  
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  

@@ -8,9 +8,7 @@ part 'user_dto.g.dart';
 class UserDTO with _$UserDTO {
   const UserDTO._();
   const factory UserDTO({
-    // ignore: invalid_annotation_target
     @JsonKey(name: 'login') required String name,
-    // ignore: invalid_annotation_target
     @JsonKey(name: 'avatar_url') required String avatarUrl,
   }) = _UserDTO;
 

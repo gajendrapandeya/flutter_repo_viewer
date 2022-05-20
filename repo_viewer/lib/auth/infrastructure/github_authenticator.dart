@@ -104,7 +104,7 @@ class GithubAuthenticator {
         stringToBase64.encode('$clientId:$clientSecret');
     try {
       try {
-        _dio.deleteUri(revocationEndPoint,
+        await _dio.deleteUri(revocationEndPoint,
             data: {'access_token': accessToken},
             options: Options(headers: {
               'Authorization': 'basic $usernameAndPassword',

@@ -5,6 +5,7 @@ import 'package:repo_viewer/github/core/infrastructure/github_headers.dart';
 import 'package:repo_viewer/github/core/infrastructure/github_headers_cache.dart';
 import 'package:repo_viewer/github/core/infrastructure/github_repo_dto.dart';
 import 'package:repo_viewer/core/infrastructure/dio_extensions.dart';
+import 'package:repo_viewer/github/core/infrastructure/pagination_config.dart';
 
 class StarredReposRemoteService {
   final Dio _dio;
@@ -16,8 +17,10 @@ class StarredReposRemoteService {
       int page) async {
     const token = 'access_token';
     const accept = 'application/vnd.github.v3.html+json';
-    final requestUri =
-        Uri.https('api.github.com', '/user/starred', {'page': '$page'});
+    final requestUri = Uri.https('api.github.com', '/user/starred', {
+      'page': '$page',
+      'per_page': PaginationConfig.itemsPerPage.toString(),
+    });
 
     final previousHeaders = await _headersCache.getHeaders(requestUri);
 
@@ -32,20 +35,29 @@ class StarredReposRemoteService {
           },
         ),
       );
+
       if (response.statusCode == 304) {
-        return const RemoteResponse.notModified();
+        return RemoteResponse.notModified(
+          maxPage: previousHeaders?.link?.maxPage ?? 0,
+        );
       } else if (response.statusCode == 200) {
         final headers = GithubHeaders.parse(response);
         await _headersCache.saveHeaders(headers, requestUri);
         final convertedData = (response.data as List<dynamic>)
             .map((e) => GithubRepoDTO.fromJson(e as Map<String, dynamic>))
             .toList();
-        return RemoteResponse.withNewData(convertedData);
+        return RemoteResponse.withNewData(
+          convertedData,
+          maxPage: headers.link?.maxPage ?? 1,
+        );
+      } else {
+        throw RestApiException(response.statusCode);
       }
-      throw RestApiException(response.statusCode);
     } on DioError catch (e) {
       if (e.isNoConnnectionError) {
-        const RemoteResponse.noConnection();
+        RemoteResponse.noConnection(
+          maxPage: previousHeaders?.link?.maxPage ?? 0,
+        );
       } else if (e.response == null) {
         throw RestApiException(e.response?.statusCode);
       } else {

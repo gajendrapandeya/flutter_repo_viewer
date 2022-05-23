@@ -46,11 +46,9 @@ const $GithubRepoDTO = _$GithubRepoDTOTearOff();
 /// @nodoc
 mixin _$GithubRepoDTO {
   UserDTO get owner => throw _privateConstructorUsedError;
-  String get name =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  String get name => throw _privateConstructorUsedError;
   @JsonKey(fromJson: _descriptionFromJson)
-  String get description =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  String get description => throw _privateConstructorUsedError;
   @JsonKey(name: 'stargazers_count')
   int get stargazersCount => throw _privateConstructorUsedError;
 
@@ -191,10 +189,10 @@ class _$_GithubRepoDTO extends _GithubRepoDTO {
   final UserDTO owner;
   @override
   final String name;
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(fromJson: _descriptionFromJson)
   final String description;
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(name: 'stargazers_count')
   final int stargazersCount;
 
@@ -251,10 +249,10 @@ abstract class _GithubRepoDTO extends GithubRepoDTO {
   UserDTO get owner;
   @override
   String get name;
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(fromJson: _descriptionFromJson)
   String get description;
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(name: 'stargazers_count')
   int get stargazersCount;
   @override

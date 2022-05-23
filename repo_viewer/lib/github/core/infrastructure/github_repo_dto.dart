@@ -16,9 +16,7 @@ abstract class GithubRepoDTO with _$GithubRepoDTO {
   const factory GithubRepoDTO({
     required UserDTO owner,
     required String name,
-    // ignore: invalid_annotation_target
     @JsonKey(fromJson: _descriptionFromJson) required String description,
-    // ignore: invalid_annotation_target
     @JsonKey(name: 'stargazers_count') required int stargazersCount,
   }) = _GithubRepoDTO;
 

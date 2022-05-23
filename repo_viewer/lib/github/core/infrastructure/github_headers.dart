@@ -7,8 +7,10 @@ part 'github_headers.g.dart';
 @freezed
 abstract class GithubHeaders with _$GithubHeaders {
   const GithubHeaders._();
-  const factory GithubHeaders({String? etag, PaginationLink? link}) =
-      _GithubHeaders;
+  const factory GithubHeaders({
+    String? etag,
+    PaginationLink? link,
+  }) = _GithubHeaders;
 
   factory GithubHeaders.parse(Response response) {
     final link = response.headers.map['Link']?[0];
